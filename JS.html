@@ -1,0 +1,422 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>quiz</title>
+
+<style type="text/css">
+html { overflow-y: scroll; }
+
+body { 
+margin: 0; font-size: 15px; line-height: 1.25;
+ font-family: Arial, Helvetica, sans-serif;
+  }
+  
+body, button, input, select, textarea { font-family: sans-serif; color: #222; }
+
+li{color:blue;font-size:100%;}
+
+table, th, tr, td{border:1px solid;boder-collapse:collapse;}
+
+/* Style the header */
+header {
+  background-color: #666;
+  text-align: center;
+  padding:10px;
+  height:50px;
+  color: white;
+}
+
+nav {
+  float: left;
+  width: 0%;
+  background: white;
+}
+
+
+article {
+  float: left;
+  padding: 20px;
+  width:100%;
+  height:80%;
+  background-color: #00000;
+}
+
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
+  background-color: rgb(50,50,50);
+  height:25px;
+  padding: 10px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size:25px;
+  color: white;
+}
+
+.gridContainer.clearfix #header h1 {
+	font-size: 1.5em;
+	color: #333;
+	}
+img, object, embed, video {
+	max-width: 100%;
+}
+
+@media only screen and (min-width: 769px) {
+.gridContainer {
+	width: 88.2%;
+	max-width: 1232px;
+	padding-left: 0.9%;
+	padding-right: 0.9%;
+	margin: auto;
+}
+#header {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+#content1, #content3, #content5, #content7{
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 48.9795%;
+	display: block;
+}
+#content2, #content4, #content6, #content8{
+	clear: none;
+	float: left;
+	margin-left: 2.0408%;
+	width: 48.9795%;
+	display: block;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+function add(a,b)
+{
+	return a+b;
+}
+function sub(a,b)
+{
+	return a-b;
+}
+function mul(a,b)
+{
+	return a*b;
+}
+function div(a,b)
+{
+	return a/b;
+}
+function click_in(OP)
+{
+	var in1=document.getElementById("in1");
+	var in2=document.getElementById("in2");
+	var out1=document.getElementById("out1");	
+	var v1=Number(in1.value);
+	var v2=Number(in2.value);
+	var v3;
+	if (OP=='+')
+	{
+		v3=add(v1,v2);
+	}
+	else if (OP=='-')
+	{
+		v3=sub(v1,v2);
+	}
+	else if (OP=='*')
+	{
+		v3=mul(v1,v2);
+	}
+	else if (OP=='/')
+	{
+		v3=div(v1,v2);
+	}
+	out1.value=String(v3);
+}
+</script>
+
+
+<div class="gridContainer clearfix">
+
+  <div id="content1">
+    <h2># Calculator</h2>
+    <input id="in1" type="text" value=""> <input id="in2" type="text" value="">
+	<br><br>
+	<input type="button" value="+" onclick="click_in('+');">
+	<input type="button" value="-" onclick="click_in('-');">
+	<input type="button" value="*" onclick="click_in('*');">
+	<input type="button" value="/" onclick="click_in('/');">
+	<br><br>
+    <p>Result<input id="out1" type="text" readonly="readonly"><br>
+  </div>
+ 
+  <div id="content2">
+    <h2># Sum Calculator</h2>
+  
+	<label for="fname1">x input:</label><br>
+	  <input type="text" id="fname1" name="fname1"><br>
+	<label for="fname2">y input:</label><br>
+	  <input type="text" id="fname2" name="fname2"><br><br>
+	<input type="button" onclick="calcadd()" value="+">
+	<input type="button" onclick="calcsub()" value="-"><br>
+	<p id="demo"></p>
+
+	<script>
+	function calcadd()
+	{
+	x=document.getElementById("fname1").value;
+	y=document.getElementById("fname2").value;
+	x=Number(x)
+	y=Number(y)
+	//document.write("<p>add result = " +(x+y)+"</p>");
+	document.getElementById("demo").innerHTML = "x + y = "+(x+y);
+	}
+	
+	function calcsub()
+	{
+	x=document.getElementById("fname1").value;
+	y=document.getElementById("fname2").value;
+	x=Number(x)
+	y=Number(y)
+	//document.write("<p>add result = " +(x+y)+"</p>");
+	document.getElementById("demo").innerHTML = "x - y = "+(x-y);
+	}
+	
+	</script>  
+  </div>
+  
+  <div id="content3">
+    <h2># EventListener Example</h2>
+	<h3>방향키로 상하좌우 셀이동하기</h3>
+	<style>
+	td { width:50px; height:50px; border:1px solid orchid;  }
+	</style>
+
+<script>
+let tds;
+let prevIndex=0, index=0;
+window.onload = function () { // 웹 페이지의 로딩 완료시 실행
+tds = document.getElementsByTagName("td");	
+tds[index].style.backgroundColor = "orchid";
+}
+window.onkeydown = function (e) {
+	switch(e.key) {
+		case "ArrowDown" : 
+			if(index/3 >= 2) return; // 맨 위 셀의 경우
+			index += 3;
+			break;
+		case "ArrowUp" : 
+			if(index/3 < 1) return; // 맨 아래 셀의 경우
+			index -= 3;
+			break;
+		case "ArrowLeft" : 
+			if(index%3 == 0) return; // 맨 왼쪽 셀의 경우
+			index--; 
+			break;
+		case "ArrowRight" : 
+			if(index%3 == 2) return; // 맨 오른쪽 셀의 경우
+			index++; 
+			break;
+	}
+	tds[index].style.backgroundColor = "orchid";
+	tds[prevIndex].style.backgroundColor = "white";
+	prevIndex = index;
+}
+</script>
+
+<table>
+	<tr><td></td><td></td><td></td></tr>
+	<tr><td></td><td></td><td></td></tr>
+	<tr><td></td><td></td><td></td></tr>
+</table>
+</div>
+  
+<div id="content4">
+<h2># Canvas Example</h2>
+
+<canvas id="myCanvas1" width="400" height="200" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+
+
+	<script>
+	var c = document.getElementById("myCanvas1");
+	var ctx = c.getContext("2d"); //그림그리는 컨텍스트
+	ctx.strokeStyle = "#000000";
+	ctx.beginPath();//원그리기
+	ctx.arc(95, 120, 60, 0, 1.5 * Math.PI);//중심좌표, 반지름, 시작각도, 끝각 2pi=360
+	ctx.stroke();
+	ctx.fillStyle = "blue";
+	ctx.fill();
+
+	ctx.strokeStyle = "#FF0000";
+	ctx.moveTo(95, 120);//선그리기
+	ctx.lineTo(95, 60);
+	ctx.stroke();//실행
+	
+	ctx.moveTo(95, 120);
+	ctx.lineTo(155, 120);
+	ctx.stroke();//실행
+	
+	ctx.font = "20px Arial";
+	ctx.strokeText("Hello World",10,50);
+	
+	ctx.fillStyle = "orange";
+	ctx.fillRect(150, 10, 75, 60);
+
+	ctx.strokeStyle = "#00FF00";
+	ctx.strokeRect(20,20,150,100);
+	
+	//ctx.clearRect(0,0,400,300);
+
+/*<p>
+16=1*16+6*1=22 ff=15*16+15*1=255<br>
+rgb(255,255,255), rgb(255,0,0)=ff0000</p>
+*/
+	</script>
+	
+  </div>
+    <div id="content5">
+    <h2># 2011~2021 우리나라 인구분포 시각화</h2>
+<canvas id="myCanvas2" width="400" height="300" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+	<script>
+	var c = document.getElementById("myCanvas2");
+	var ctx = c.getContext("2d"); //그림그리는 컨텍스트
+
+	ctx.strokeStyle = "#000000";
+	ctx.moveTo(0, 200);//선그리기
+	ctx.lineTo(400, 200);
+	
+	ctx.moveTo(30, 0);//선그리기
+	ctx.lineTo(30, 300);
+	
+	ctx.stroke();//실행
+	
+	scoreKor=[47.13, 48.46, 43.65, 43.54, 43.84, 40.62, 35.78, 32.68, 30.27, 27.23];
+	//scoreKor=[471.3, 484.6, 436.5, 435.4, 438.4, 406.2, 357.8, 326.8, 302.7, 272.3];
+	for(n=0;n<10;){
+		x=30*(n+1);
+		ctx.fillStyle = "red";
+		ctx.fillRect(x, 200, 15, -scoreKor[n]*3);//시작점, 가로, 세로,
+		n=n+1;
+		}
+
+	</script>
+	
+	</div>
+	 
+	 
+	<div id="content6">
+    <h2># Plot Sin Graph</h2>
+<canvas id="myCanvas3" width="400" height="300" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+	<script>
+	var c = document.getElementById("myCanvas3");
+	var ctx = c.getContext("2d"); //그림그리는 컨텍스트
+
+	ctx.strokeStyle = "#FF0000";
+	ctx.moveTo(0, 150);//선그리기
+	ctx.lineTo(400, 150);
+	
+	ctx.moveTo(200, 0);//선그리기
+	ctx.lineTo(200, 300);
+	
+	ctx.stroke();//실행
+	
+	for(x=0;x<400;){
+		xx=x-200;
+		//y=-(x+10);
+		//yy=y+150;
+		y=100*Math.sin(xx/25)+150;
+		ctx.fillStyle = "dark-green";
+		ctx.fillRect(x, y, 2, 2);//시작점, 가로, 세로,
+		x=x+2;
+		}
+
+	</script>
+	</div>
+	
+	
+	<div id="content7">
+    <h2># Plot Graph</h2>
+    <canvas id="myCanvas4" width="400" height="300" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+	<script>
+	var c = document.getElementById("myCanvas4");
+	var ctx = c.getContext("2d"); //그림그리는 컨텍스트
+
+	ctx.strokeStyle = "#FF0000";
+	ctx.moveTo(0, 150);//선그리기
+	ctx.lineTo(400, 150);
+	
+	ctx.moveTo(200, 0);//선그리기
+	ctx.lineTo(200, 300);
+	
+	ctx.stroke();//실행
+	
+	for(x=0;x<400;){
+		xx=x-200;
+		y=-(xx+10);
+		yy=y+160;
+		ctx.fillStyle = "dark-green";
+		ctx.fillRect(x, yy, 2, 2);//시작점, 가로, 세로,
+		x=x+2;
+		}
+
+	</script>
+	</div>
+	
+	
+	<div id="content8">
+    <h2># Bar Graph</h2>
+    <canvas id="myCanvas5" width="400" height="300" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+	<script>
+	var c = document.getElementById("myCanvas5");
+	var ctx = c.getContext("2d"); //그림그리는 컨텍스트
+
+	ctx.strokeStyle = "#FF0000";
+	ctx.moveTo(0, 70);//선그리기
+	ctx.lineTo(400, 70);
+	
+	ctx.moveTo(30, 0);//선그리기
+	ctx.lineTo(30, 300);
+	
+	ctx.stroke();//실행
+	
+	scoreKor=[95,65,78,46,69];
+	
+	for(n=0;n<5;){
+		x=30*(n+1);
+		ctx.fillStyle = "dark-green";
+		ctx.fillRect(x, 70, 15, scoreKor[n]);//시작점, 가로, 세로,
+		n=n+1;
+		}
+
+	</script>
+	</div>
+	
+
+</div>
+<br>
+<section>
+</section>
+
+<footer>
+Countries or companies that own big data platforms will dominate the 
+era of the 4th Industrial Revolution
+</footer>
+</body>
+</html>

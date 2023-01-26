@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>Test Page</title>
+<meta charset="utf-8">
+<style>
+
+li{color:blue;font-size:100%;}
+table, th, tr, td{border:1px solid;boder-collapse:collapse;}
+
+p{
+border: 2px solid powderblue;
+width:20%
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  text-align: center;
+  padding:10px;
+  height:50px;
+  color: white;
+}
+
+nav {
+  float: left;
+  width: 0%;
+  background: white;
+}
+
+
+article {
+  float: left;
+  padding: 20px;
+  width:100%;
+  height:80%;
+  background-color: #00000;
+}
+
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
+  background-color: rgb(50,50,50);
+  height:25px;
+  padding: 10px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size:25px;
+  color: white;
+}
+
+}
+#cards{
+text-align: center;
+padding-top:10px;
+height:30px;
+background-color:#888;
+}
+
+#card1,#card2,#card3,#card4,#card5
+{
+float:left;
+text-align: center;
+width:20%;
+height:50px;
+padding-top:10px;
+background-color:yellow;
+}
+
+#fr01{
+float:left; 
+width:90%;
+height:90%;
+}
+
+</style>
+</head>
+
+<script>
+/*
+x=prompt("입장코드 입력 : ","");
+if(x=="2022"){
+	alert("Ok");
+}
+else	
+{
+	alert("Retry");
+}
+*/
+</script>
+
+<script>
+function add(a,b)
+{
+	return a+b;
+}
+function sub(a,b)
+{
+	return a-b;
+}
+function mul(a,b)
+{
+	return a*b;
+}
+function div(a,b)
+{
+	return a/b;
+}
+function click_in(OP)
+{
+	var in1=document.getElementById("in1");
+	var in2=document.getElementById("in2");
+	var out1=document.getElementById("out1");	
+	var v1=Number(in1.value);
+	var v2=Number(in2.value);
+	var v3;
+	if (OP=='+')
+	{
+		v3=add(v1,v2);
+	}
+	else if (OP=='-')
+	{
+		v3=sub(v1,v2);
+	}
+	else if (OP=='*')
+	{
+		v3=mul(v1,v2);
+	}
+	else if (OP=='/')
+	{
+		v3=div(v1,v2);
+	}
+	out1.value=String(v3);
+}
+</script>
+
+
+<body >
+
+<section>
+  <nav>
+
+  </nav>
+
+<article>
+<h3>Calculator1</h3>
+<input id="in1" type="text" value=""> <input id="in2" type="text" value="">
+<br><br>
+<input type="button" value="+" onclick="click_in('+');">
+<input type="button" value="-" onclick="click_in('-');">
+<input type="button" value="*" onclick="click_in('*');">
+<input type="button" value="/" onclick="click_in('/');">
+<br><br>
+결과값:<input id="out1" type="text" readonly="readonly">
+
+<h3>Calculator2</h3>
+<label for="fname1">x input:</label><br>
+  <input type="text" id="fname1" name="fname1"><br>
+<label for="fname2">y input:</label><br>
+  <input type="text" id="fname2" name="fname2"><br>
+<input type="button" onclick="calc()" value="result"> 
+<p id="demo"></p>
+
+<script>
+function calc()
+{
+x=document.getElementById("fname1").value;
+y=document.getElementById("fname2").value;
+x=Number(x)
+y=Number(y)
+//document.write("<p>add result = " +(x+y)+"</p>");
+document.getElementById("demo").innerHTML = "result "+(x+y);
+}
+</script>
+</article>
+</section>
+
+<footer>
+Countries or companies that own big data platforms will dominate the 
+era of the 4th Industrial Revolution
+</footer>
+
+</body>
+</html>

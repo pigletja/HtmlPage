@@ -1,0 +1,44 @@
+int Led_pin=12;
+int touchN=0;
+unsigned long preTime=0;
+unsigned long totTime=0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(Led_pin, OUTPUT);
+}
+
+void loop() {
+  int xx = analogRead(A0);
+  int lastState = digitalRead(Led_pin);
+  
+  if (xx>400){ 
+    unsigned long curTime=millis();
+
+    if (lastState != 1) {
+      Serial.println("ON! ");
+      touchN++;
+      Serial.print(touchN);
+      Serial.println(" touch!");
+    }
+    digitalWrite(Led_pin, 1);
+    if (preTime > 0){
+      totTime += (curTime - preTime);
+    }
+    preTime = curTime;
+  }
+  else {
+    if (lastState != 0) {
+      Serial.println("OFF! ");
+    }
+    digitalWrite(Led_pin, 0);
+    preTime = 0;
+
+    if (totTime > 0) {
+      Serial.print(totTime);
+      Serial.println(" msec");
+      totTime = 0;
+    }
+  }
+  delay(100);
+}

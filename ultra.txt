@@ -1,0 +1,59 @@
+#define TRIG 7 //TRIG 핀 설정 (초음파 보내는 핀)
+#define ECHO 6 //ECHO 핀 설정 (초음파 받는 핀)
+
+void setup() {
+  Serial.begin(9600);  
+  pinMode(TRIG, OUTPUT);     
+  pinMode(ECHO, INPUT);   
+  pinMode(8, OUTPUT);   //부저 
+  pinMode(11, OUTPUT);  //yellow
+  pinMode(12, OUTPUT);  //blue
+  pinMode(13, OUTPUT);  //red
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  digitalWrite(TRIG, LOW); //초기화
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH); //trigger 신호발생
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long duration = pulseIn (ECHO, HIGH); //물체에 반사되어 echo핀에 돌아온 초음파의 시간을 변수에 저장
+  long distance = duration * 17 / 1000; //소리속도 340m/2 왕복시간 cm
+  Serial.println(duration ); //초음파가 반사되어 돌아오는 시간
+  Serial.print("\nDIstance : ");
+  Serial.print(distance); //측정된 물체로부터 거리값(cm값)
+  Serial.println(" Cm");
+  delay(1000); //1초마다 측정값을 출력함
+  
+  if (distance<=10){ //red, blue, yellow 켜기
+    digitalWrite(13, HIGH);
+    digitalWrite(12, HIGH);
+    digitalWrite(11, HIGH);
+    tone(8,1000,100);
+    delay(100);
+    noTone(8);
+  }
+  else if (distance<=30){ //red, blue켜기
+    digitalWrite(13, HIGH);
+    digitalWrite(12, HIGH);
+    digitalWrite(11, LOW);
+    tone(8,500,100);
+    delay(100);
+    noTone(8);
+  }
+  else if (distance<=50){ //red 켜기
+    digitalWrite(13, HIGH);
+    digitalWrite(12, LOW);
+    digitalWrite(11, LOW);
+    tone(8,250,100);
+    delay(100);
+    noTone(8);
+  }
+  else{
+    digitalWrite(13, LOW);
+    digitalWrite(12, LOW);
+    digitalWrite(11, LOW);
+    }
+}

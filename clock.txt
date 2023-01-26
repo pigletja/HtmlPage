@@ -1,0 +1,25 @@
+int Led_pin=12;
+int touchN=0;
+bool eventT=0;
+int aa[]={1,1,1,0,0,1,0,1};
+int n=0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(Led_pin, OUTPUT);
+
+  for (int a=0;a<16;a++){
+    Serial.print(eventT);
+    Serial.print(" : ");
+    if(eventT==1 && n<8){
+      Serial.println(aa[n]);
+      n=n+1;
+    }
+  else {Serial.println();}
+  delay(100);
+  eventT=!eventT;
+  }
+}
+
+void loop() {
+}

@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>AppInventor</title>
+<meta charset="utf-8">
+<style>
+
+li{color:blue;font-size:100%;}
+table, th, tr, td{border:1px solid;boder-collapse:collapse;}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: white;
+  padding: 10px;
+}
+.grid-item {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid powderblue;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+</style>
+</head>
+
+<body >
+<h1>앱으로 제어하는 IOT</h1>
+
+<p><h3>학교 교실에서 <em>이동 할때</em> 교실 전등 좀 <em>Turn Off!!</em></h3></p>
+<p><h3>아두이노 블루투스 통신으로 휴대폰 앱에서 버튼을 누르면 아두이노에서 LED가 켜지고 꺼지기 </h3></p>
+
+<script>
+    document.getElementById('vid').play();
+</script>
+
+<div class="grid-container">
+  <div class="grid-item"><video id="vid" width="400" height="350" autoplay="autoplay" loop="loop" muted="muted" controls>
+  <source src="video/iot.mp4" type="video/mp4">
+  <source src="video/iot.ogg" type="video/ogg"></video></div>
+  <div class="grid-item"><img src="img/iot1.jpg" width="400" height="300"></div>
+  <div class="grid-item"><img src="img/screen.jpg" width="300" height="300"></div>  
+  <div class="grid-item">스마트폰으로 전등 제어</div>
+  <div class="grid-item">블루투스 모듈과 아두이노 연결<a href="iot.txt">코드</a></div>
+  <div class="grid-item">앱인벤터 디자이너<a href="img/iot2.jpg"> 코드</a></div>  
+ 
+</div>
+
+</body>
+</html>
